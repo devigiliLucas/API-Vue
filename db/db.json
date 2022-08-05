@@ -1,0 +1,69 @@
+{
+  "airplanes": [
+    {
+      "fabricante": "Airbus",
+      "ano": "2010",
+      "motor": "GP7270",
+      "distancia": "Internacional",
+      "prefixo": "ZX-3RT",
+      "modelo": "A380",
+      "companhia": "Emirates",
+      "numeroMotores": "4",
+      "tipoAviao": "Comercial",
+      "pais": "Emirados Árabes ",
+      "id": 1
+    },
+    {
+      "fabricante": "Boeing",
+      "ano": "1985",
+      "motor": " Rolls-Royce RB211",
+      "distancia": "Internacional",
+      "prefixo": "ZQ-POU",
+      "modelo": "757",
+      "companhia": "United",
+      "numeroMotores": "2",
+      "tipoAviao": "Comercial",
+      "pais": "Estados Unidos",
+      "id": 2
+    },
+    {
+      "fabricante": "Cesna",
+      "ano": "1990",
+      "motor": " Lycoming O-360",
+      "distancia": "Regional",
+      "prefixo": "PT-LGD",
+      "modelo": "157",
+      "companhia": "Particular",
+      "numeroMotores": "1",
+      "tipoAviao": "Particular",
+      "pais": "Brasil",
+      "id": 3
+    },
+    {
+      "fabricante": "Antonov",
+      "ano": "1965",
+      "motor": "Kuznetsov NK-12MA ",
+      "distancia": "Internacional",
+      "prefixo": "UR-SCI",
+      "modelo": "AN22",
+      "companhia": "Antonov Airlines",
+      "numeroMotores": "2",
+      "tipoAviao": "Cargueiro e militar",
+      "pais": "Ucrânia",
+      "id": 4
+    },
+    {
+      "fabricante": "Lockheed",
+      "ano": "1966",
+      "motor": "Pratt & Whitney J58-1",
+      "distancia": "Internacional ",
+      "prefixo": "TY-9IU",
+      "modelo": "SR-71",
+      "companhia": "Forças Armadas Americanas",
+      "numeroMotores": "2",
+      "tipoAviao": "Militar",
+      "pais": "Estados Unidos ",
+      "id": 5
+    }
+  ]
+}
