@@ -17,13 +17,13 @@
     </div>
     <div id="rows">
       <div class="row" v-for="airplane in airplanes" :key="airplane.id">
-        <template v-if="editar">
+        <template v-if="edit">
           <div>
             <input
               type="text"
               class="inpt"
               placeholder="Ex: Boeing"
-              v-model="airplane.fabricante"
+              v-model="airplane.manufacturer"
               required
             />
           </div>
@@ -32,7 +32,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: 1997"
-              v-model="airplane.ano"
+              v-model="airplane.year"
               required
             />
           </div>
@@ -41,7 +41,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: GE 90"
-              v-model="airplane.motor"
+              v-model="airplane.engine"
               required
             />
           </div>
@@ -50,7 +50,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: Internacional"
-              v-model="airplane.distancia"
+              v-model="airplane.range"
               required
             />
           </div>
@@ -59,7 +59,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: PT-MUI"
-              v-model="airplane.prefixo"
+              v-model="airplane.prefix"
               required
             />
           </div>
@@ -68,7 +68,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: 777"
-              v-model="airplane.modelo"
+              v-model="airplane.model"
               required
             />
           </div>
@@ -77,7 +77,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: Latam"
-              v-model="airplane.companhia"
+              v-model="airplane.company"
               required
             />
           </div>
@@ -86,7 +86,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: 2"
-              v-model="airplane.numeroMotores"
+              v-model="airplane.engineNumber"
               required
             />
           </div>
@@ -95,7 +95,7 @@
               type="text"
               class="inpt"
               placeholder="Ex: Comercial"
-              v-model="airplane.tipoAviao"
+              v-model="airplane.airplaneType"
               required
             />
           </div>
@@ -104,33 +104,33 @@
               type="text"
               class="inpt"
               placeholder="Ex: Brasil"
-              v-model="airplane.pais"
+              v-model="airplane.country"
               required
             />
           </div>
           <div id="btn">
-            <button class="editar" @click="editaraviao(airplane.id, airplane)">
+            <button class="edit" @click="editAirplane(airplane.id, airplane)">
               Salvar
             </button>
-            <button class="excluir" @click="excluir(airplane.id)">
+            <button class="delete" @click="deleteAirplane(airplane.id)">
               Excluir
             </button>
           </div>
         </template>
         <template v-else>
-          <div class="content">{{ airplane.fabricante }}</div>
-          <div class="content">{{ airplane.ano }}</div>
-          <div class="content">{{ airplane.motor }}</div>
-          <div class="content">{{ airplane.distancia }}</div>
-          <div class="content">{{ airplane.prefixo }}</div>
-          <div class="content">{{ airplane.modelo }}</div>
-          <div class="content">{{ airplane.companhia }}</div>
-          <div class="content">{{ airplane.numeroMotores }}</div>
-          <div class="content">{{ airplane.tipoAviao }}</div>
-          <div class="content">{{ airplane.pais }}</div>
+          <div class="content">{{ airplane.manufacturer }}</div>
+          <div class="content">{{ airplane.year}}</div>
+          <div class="content">{{ airplane.engine }}</div>
+          <div class="content">{{ airplane.range }}</div>
+          <div class="content">{{ airplane.prefix }}</div>
+          <div class="content">{{ airplane.model }}</div>
+          <div class="content">{{ airplane.company }}</div>
+          <div class="content">{{ airplane.engineNumber }}</div>
+          <div class="content">{{ airplane.airplaneType }}</div>
+          <div class="content">{{ airplane.country }}</div>
           <div id="btn">
-            <button class="editar" @click="edit(airplane.id)">Editar</button>
-            <button class="excluir" @click="excluir(airplane.id)">
+            <button class="edit" @click="editItem(airplane.id)">Editar</button>
+            <button class="delete" @click="deleteAirplane(airplane.id)">
               Excluir
             </button>
           </div>
@@ -148,26 +148,26 @@ export default {
     return {
       airplanes: null,
       airplane_id: null,
-      editar: false,
+      edit: false,
       url: "http://localhost:3000/airplanes",
 
       airplane: {
-        fabricante: "",
-        ano: "",
-        motor: "",
-        distancia: "",
-        prefixo: "",
-        modelo: "",
-        companhia: "",
-        numeroMotores: "",
-        tipoAviao: "",
-        pais: "",
+        manufacturer: "",
+        year: "",
+        engine: "",
+        range: "",
+        prefix: "",
+        model: "",
+        company: "",
+        engineNumber: "",
+        airplaneType: "",
+        country: "",
       },
     };
   },
   methods: {
-    edit() {
-      this.editar = true;
+    editItem() {
+      this.edit = true;
     },
 
     async getAirplanes() {
@@ -180,7 +180,7 @@ export default {
       }
     },
 
-    async excluir(id) {
+    async deleteAirplane(id) {
       try {
         await axios.delete(`${this.url}/${id}`);
         this.getAirplanes();
@@ -189,14 +189,14 @@ export default {
       }
     },
 
-    async editaraviao(id, airplane) {
+    async editAirplane(id, airplane) {
       try {
         this.airplane = airplane;
         await axios.put(`${this.url}/${id}`, airplane);
       } catch (error) {
         console.log(error);
       } finally {
-        this.editar = false;
+        this.edit = false;
         this.getAirplanes();
       }
     },
@@ -246,18 +246,18 @@ export default {
   justify-content: space-around;
 }
 
-.editar,
-.excluir {
+.edit,
+.delete {
   height: 40%;
   width: 100%;
 }
 
-.excluir {
+.delete {
   color: white;
   background-color: black;
 }
 
-.editar {
+.edit {
   background-color: transparent;
 }
 

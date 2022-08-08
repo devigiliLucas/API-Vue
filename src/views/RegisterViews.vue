@@ -1,8 +1,8 @@
 <template>
   <div id="register">
-    <div id="box" v-show="sucesso">
-      <div id="sucesso">
-        <p class="sucesso">Avião cadastrado com sucesso</p>
+    <div id="box" v-show="success">
+      <div id="success">
+        <p class="success">Avião cadastrado com sucesso</p>
       </div>
     </div>
     <form @submit="createPlane">
@@ -13,20 +13,20 @@
             <input
               type="text"
               placeholder="Ex: Boeing"
-              v-model="fabricante"
+              v-model="plane.manufacturer"
               required
             />
           </div>
           <div class="inpt">
             <label>Ano de fabricação</label>
-            <input type="text" placeholder="Ex: 1997" v-model="ano" required />
+            <input type="text" placeholder="Ex: 1997" v-model="plane.year" required />
           </div>
           <div class="inpt">
             <label>Motor</label>
             <input
               type="text"
               placeholder="Ex: GE 90"
-              v-model="motor"
+              v-model="plane.engine"
               required
             />
           </div>
@@ -35,7 +35,7 @@
             <input
               type="text"
               placeholder="Ex: Internacional"
-              v-model="distancia"
+              v-model="plane.range"
               required
             />
           </div>
@@ -44,7 +44,7 @@
             <input
               type="text"
               placeholder="Ex: PT-MUI"
-              v-model="prefixo"
+              v-model="plane.prefix"
               required
             />
           </div>
@@ -52,19 +52,14 @@
         <div id="rightColumn">
           <div class="inpt">
             <label>Modelo</label>
-            <input
-              type="text"
-              placeholder="Ex: 777"
-              v-model="modelo"
-              required
-            />
+            <input type="text" placeholder="Ex: 777" v-model="plane.model" required />
           </div>
           <div class="inpt">
             <label>Companhia</label>
             <input
               type="text"
               placeholder="Ex: Latam"
-              v-model="companhia"
+              v-model="plane.company"
               required
             />
           </div>
@@ -73,7 +68,7 @@
             <input
               type="text"
               placeholder="Ex: 2"
-              v-model="numeroMotores"
+              v-model="plane.engineNumber"
               required
             />
           </div>
@@ -82,7 +77,7 @@
             <input
               type="text"
               placeholder="Ex: Comercial"
-              v-model="tipoAviao"
+              v-model="plane.airplaneType"
               required
             />
           </div>
@@ -91,7 +86,7 @@
             <input
               type="text"
               placeholder="Ex: Brasil"
-              v-model="pais"
+              v-model="plane.country"
               required
             />
           </div>
@@ -99,12 +94,12 @@
       </div>
       <div id="footer">
         <button class="btn">
-          <router-link :to="{ name: 'list' }" class="linkVoltar"
+          <router-link :to="{ name: 'list' }" class="linkBack"
             >Voltar</router-link
           >
         </button>
         <button class="btn">
-          <button class="btn enviar">
+          <button class="btn send">
             Enviar<i class="fa-solid fa-plane-departure icon"></i>
           </button>
         </button>
@@ -129,41 +124,31 @@ export default {
       load: false,
       sucesso: false,
 
-      fabricante: "",
-      ano: "",
-      motor: "",
-      distancia: "",
-      prefixo: "",
-      modelo: "",
-      companhia: "",
-      numeroMotores: "",
-      tipoAviao: "",
-      pais: "",
+      plane: {
+        manufacturer: "",
+        year: "",
+        engine: "",
+        range: "",
+        prefix: "",
+        model: "",
+        company: "",
+        engineNumber: "",
+        airplaneType: "",
+        country: "",
+      },
     };
   },
 
   methods: {
     modal() {
       this.load = true;
-      this.sucesso = true;
+      this.success = true;
       setTimeout(() => this.$router.push({ name: "list" }), 2000);
     },
 
     async createPlane() {
       try {
-        const data = {
-          fabricante: this.fabricante,
-          ano: this.ano,
-          motor: this.motor,
-          distancia: this.distancia,
-          prefixo: this.prefixo,
-          modelo: this.modelo,
-          companhia: this.companhia,
-          numeroMotores: this.numeroMotores,
-          tipoAviao: this.tipoAviao,
-          pais: this.pais,
-        };
-        const res = axios.post("http://localhost:3000/airplanes", data);
+        const res = axios.post("http://localhost:3000/airplanes", this.plane);
         this.$forceUpdate();
         this.modal();
       } catch (error) {
@@ -188,7 +173,7 @@ export default {
   width: 65%;
 }
 
-#sucesso {
+#success {
   height: 100%;
   width: 30%;
   text-align: center;
@@ -196,7 +181,7 @@ export default {
   border-radius: 10px;
 }
 
-.sucesso {
+.success {
   height: 100%;
   width: 100%;
   font-size: 20px;
@@ -245,7 +230,7 @@ input {
   border: none;
 }
 
-.enviar {
+.send {
   background-color: black;
   color: white;
   border-radius: 10px;
@@ -262,7 +247,7 @@ input {
   justify-content: center;
 }
 
-.linkVoltar {
+.linkBack {
   text-decoration: none;
 }
 
