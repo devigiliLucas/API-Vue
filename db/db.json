@@ -12,6 +12,32 @@
       "airplaneType": "tttttttttt",
       "country": "io",
       "id": 1
+    },
+    {
+      "manufacturer": "oi",
+      "year": "oi",
+      "engine": "oi",
+      "range": "oio",
+      "prefix": "ioioioio",
+      "model": "io",
+      "company": "io",
+      "engineNumber": "oi",
+      "airplaneType": "oio",
+      "country": "io",
+      "id": 2
+    },
+    {
+      "manufacturer": "oi",
+      "year": "oi",
+      "engine": "oi",
+      "range": "oi",
+      "prefix": "oi",
+      "model": "oi",
+      "company": "oi",
+      "engineNumber": "oi",
+      "airplaneType": "oi",
+      "country": "io",
+      "id": 3
     }
   ]
 }

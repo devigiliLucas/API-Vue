@@ -174,7 +174,7 @@ export default {
         const res = await planeConfigs.get();
         this.airplanes = res.data
       } catch (error) {
-        console.log(error);
+        alert("Não foi possivel resgatar o seu avião");
       }
     },
 
@@ -183,7 +183,7 @@ export default {
         await planeConfigs.delete(id);
         this.getAirplanes();
       } catch (error) {
-        console.log(error);
+        alert("Não foi possivel deletar o seu avião");
       }
     },
 
@@ -192,7 +192,7 @@ export default {
         this.airplane = airplane;
         await planeConfigs.put(id, airplane);
       } catch (error) {
-        console.log(error);
+        alert("Não foi possivel deletar o seu avião");
       } finally {
         this.edit = false;
         this.getAirplanes();

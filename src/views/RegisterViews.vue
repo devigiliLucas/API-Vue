@@ -150,19 +150,16 @@ export default {
   },
 
   methods: {
-    modal() {
-      this.load = true;
-      this.success = true;
-      setTimeout(() => this.$router.push({ name: "list" }), 2000);
-    },
-
     async createPlane() {
       try {
+        this.load= true
         await planeConfigs.post(this.plane);
         this.$forceUpdate();
-        this.modal();
       } catch (error) {
-        console.log(error);
+        alert("Não foi possivel criar o seu avião");
+      } finally {
+        this.load = false
+        this.$router.push({ name: "list" })
       }
     },
   },
