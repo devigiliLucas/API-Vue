@@ -19,7 +19,12 @@
           </div>
           <div class="inpt">
             <label>Ano de fabricação</label>
-            <input type="text" placeholder="Ex: 1997" v-model="plane.year" required />
+            <input
+              type="text"
+              placeholder="Ex: 1997"
+              v-model="plane.year"
+              required
+            />
           </div>
           <div class="inpt">
             <label>Motor</label>
@@ -52,7 +57,12 @@
         <div id="rightColumn">
           <div class="inpt">
             <label>Modelo</label>
-            <input type="text" placeholder="Ex: 777" v-model="plane.model" required />
+            <input
+              type="text"
+              placeholder="Ex: 777"
+              v-model="plane.model"
+              required
+            />
           </div>
           <div class="inpt">
             <label>Companhia</label>
@@ -112,7 +122,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import planeConfigs from "../services/planeConfigs";
 import LoadPage from "../components/LoadPage.vue";
 export default {
   name: "RegisterViews",
@@ -122,7 +132,7 @@ export default {
   data() {
     return {
       load: false,
-      sucesso: false,
+      success: false,
 
       plane: {
         manufacturer: "",
@@ -148,7 +158,7 @@ export default {
 
     async createPlane() {
       try {
-        const res = axios.post("http://localhost:3000/airplanes", this.plane);
+        await planeConfigs.post(this.plane);
         this.$forceUpdate();
         this.modal();
       } catch (error) {

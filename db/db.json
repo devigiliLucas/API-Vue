@@ -1,3 +1,17 @@
 {
-  "airplanes": []
+  "airplanes": [
+    {
+      "manufacturer": "oio",
+      "year": "ioi",
+      "engine": "io",
+      "range": "io",
+      "prefix": "ioi",
+      "model": "oio",
+      "company": "ioi",
+      "engineNumber": "oi",
+      "airplaneType": "tttttttttt",
+      "country": "io",
+      "id": 1
+    }
+  ]
 }

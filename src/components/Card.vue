@@ -119,7 +119,7 @@
         </template>
         <template v-else>
           <div class="content">{{ airplane.manufacturer }}</div>
-          <div class="content">{{ airplane.year}}</div>
+          <div class="content">{{ airplane.year }}</div>
           <div class="content">{{ airplane.engine }}</div>
           <div class="content">{{ airplane.range }}</div>
           <div class="content">{{ airplane.prefix }}</div>
@@ -141,15 +141,14 @@
 </template>
 
 <script>
-import axios from "axios";
+import planeConfigs from "../services/planeConfigs";
 export default {
   name: "CardVue",
   data() {
     return {
-      airplanes: null,
+      airplanes: [],
       airplane_id: null,
       edit: false,
-      url: "http://localhost:3000/airplanes",
 
       airplane: {
         manufacturer: "",
@@ -172,9 +171,8 @@ export default {
 
     async getAirplanes() {
       try {
-        const req = await axios.get(this.url);
-        const data = req.data;
-        this.airplanes = data;
+        const res = await planeConfigs.get();
+        this.airplanes = res.data
       } catch (error) {
         console.log(error);
       }
@@ -182,7 +180,7 @@ export default {
 
     async deleteAirplane(id) {
       try {
-        await axios.delete(`${this.url}/${id}`);
+        await planeConfigs.delete(id);
         this.getAirplanes();
       } catch (error) {
         console.log(error);
@@ -192,7 +190,7 @@ export default {
     async editAirplane(id, airplane) {
       try {
         this.airplane = airplane;
-        await axios.put(`${this.url}/${id}`, airplane);
+        await planeConfigs.put(id, airplane);
       } catch (error) {
         console.log(error);
       } finally {
